@@ -65,18 +65,3 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
     }
 }
-
-/*
-* Taxi(id, Name, costPerKm, Model, isFree)
-* Order(fk_taxi(many to one), Status, user_fk_id(many to one),
-* tripKm(Period), pointFrom, pointTo, discount(int))
-* User(one to many Orders)
-*1
-* 2
-* 3
-* 4
-* 5
-*
-*
-* name number cost
-* */

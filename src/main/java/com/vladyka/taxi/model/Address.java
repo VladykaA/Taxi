@@ -11,15 +11,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "roles")
-public class Role {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
+    @Column(name = "address_id")
     private int id;
 
-    @Column(name = "role")
-    private String role;
+    @Column(name = "address_name")
+    private String name;
 
+    @Column(name = "distance_to_center")
+    private int distanceToCenter;
 }
