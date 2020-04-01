@@ -1,22 +1,17 @@
 package com.vladyka.taxi.model;
 
 public enum Discount {
-    LIGHT,
-    MEDIUM,
-    STRONG;
+    SILVER(5),
+    GOLD(10),
+    PLATINUM(15);
 
-    public static int getDiscount(Discount type) {
-        switch (type) {
-            case LIGHT:
-                return 5;
-            case MEDIUM:
-                return 10;
-            case STRONG:
-                return 15;
-            default:
-                return 0;
-        }
+    private int value;
+
+    Discount(int value) {
+        this.value = value;
     }
 
-
+    public int getValue() {
+        return value;
+    }
 }
