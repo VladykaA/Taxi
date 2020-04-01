@@ -39,17 +39,28 @@ public class Order {
     @NotEmpty
     private BigDecimal price;
 
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "address_from_fk")
     private Address addressFrom;
-    @Transient
+
+    @OneToOne
+    @JoinColumn(name = "address_to_fk")
     private Address addressTo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_taxi")
-    private Taxi fkTaxi;
+    private Taxi taxi;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_user")
-    private User fkUser;
+    private User user;
 
 }
+
+/*
+* 1) Расчет скидки(подсчитать сколько раз данный юзер заказывал такси) и изменение цены заказа,
+* скидка хранится в Энаме
+* 2) Расчет времени ожидания такси(получить из БД последний заказ данного такси(modelName or id) и
+* потом получить расстояние до центра и потом сложить с расстоянием от центра до адреса ,к-рый выбрал юзер)
+* 3) Сохранение заказа с измененной ценой
+* */

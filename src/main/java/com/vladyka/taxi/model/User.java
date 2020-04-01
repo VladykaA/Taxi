@@ -5,13 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -36,7 +39,7 @@ public class User {
     private String password;
 
     @Column(name = "phone_number")
-    @Pattern(regexp="(^$|[0-9]{10})", message = "{lang.phone_validation}")
+    @Pattern(regexp = "(^$|[0-9]{10})", message = "{lang.phone_validation}")
     @NotEmpty(message = "{lang.phone_non_empty}")
     private String phoneNumber;
 
@@ -51,11 +54,15 @@ public class User {
     @Column(name = "user_fund")
     private BigDecimal fund;
 
-    @OneToMany(mappedBy="fkUser",cascade=CascadeType.ALL,fetch=FetchType.LAZY,
-            orphanRemoval=true)
-    private List<Order> orders;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
 
     public void addRole(Role role) {
         roles.add(role);
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 }

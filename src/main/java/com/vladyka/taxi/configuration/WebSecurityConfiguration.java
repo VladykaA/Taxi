@@ -1,6 +1,5 @@
 package com.vladyka.taxi.configuration;
 
-import com.vladyka.taxi.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -39,23 +38,28 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers(loginPage).permitAll()
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and().csrf().disable()
-                .formLogin()
-                .loginPage(loginPage)
-                .loginPage("/")
-                .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
-                .usernameParameter("user_name")
-                .passwordParameter("password")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher(logoutPage))
-                .logoutSuccessUrl(loginPage).and().exceptionHandling();
+                    .antMatchers("/").permitAll()
+                    .antMatchers(loginPage).permitAll()
+                    .antMatchers("/registration").permitAll()
+                    .antMatchers("/admin/**").hasAuthority("ADMIN")
+                    .antMatchers("/main").hasAnyAuthority("USER", "ADMIN")
+                    .anyRequest()
+                    .authenticated()
+                .and()
+                    .csrf().disable()
+                    .formLogin()
+                    .loginPage(loginPage)
+                    .loginPage("/")
+                    .failureUrl("/login?error=true")
+                    .defaultSuccessUrl("/main")
+                    .usernameParameter("user_name")
+                    .passwordParameter("password")
+                .and()
+                    .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher(logoutPage))
+                    .logoutSuccessUrl(loginPage)
+                .and()
+                    .exceptionHandling();
     }
 
     @Override

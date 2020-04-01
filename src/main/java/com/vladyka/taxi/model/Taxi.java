@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @Builder
@@ -33,9 +32,5 @@ public class Taxi {
 
     @Column(name = "free")
     private boolean isFree;
-
-    @OneToMany(mappedBy="fkTaxi",cascade=CascadeType.ALL,fetch=FetchType.LAZY,
-            orphanRemoval=true)
-    private List<Order> orders;
 
 }

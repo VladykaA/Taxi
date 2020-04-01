@@ -21,6 +21,9 @@ public class Address {
     @Column(name = "address_name")
     private String name;
 
+    @Column(name = "address_name_ukr")
+    private String nameUkr;
+
     @Column(name = "distance_to_center")
     private int distanceToCenter;
 }
