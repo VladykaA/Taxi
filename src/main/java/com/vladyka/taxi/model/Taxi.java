@@ -30,7 +30,7 @@ public class Taxi {
     @NotEmpty
     private BigDecimal costPerKm;
 
-    @Column(name = "free")
+    @Column(name = "is_free")
     private boolean isFree;
 
 }

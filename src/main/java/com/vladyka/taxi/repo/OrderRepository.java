@@ -11,5 +11,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findAll();
 
+    /*@Query("SELECT o FROM Order o WHERE o.taxi.modelName = :#{#taxi.modelName} ORDER BY o.id DESC")
+    Optional<Order> findTopByOrderByTaxi(@Param("taxi") Taxi taxi);*/
+
     int countByUserId(int id);
+
+
 }

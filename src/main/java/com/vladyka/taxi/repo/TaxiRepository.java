@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface TaxiRepository extends JpaRepository<Taxi, Long> {
     List<Taxi> findAll();
+
+//    List<Taxi> findAllByFreeIsTrue();
+
+    Taxi findByModelName(String name);
 }
